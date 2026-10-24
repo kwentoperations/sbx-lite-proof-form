@@ -3,7 +3,7 @@
  * formKey = same soft spam filter as order-form Apps Script FORM_KEY (N6 non-secret).
  * Serve binder with BS_B5B_FORM_KEY matching this formKey. Listener DISABLED. */
 window.SBX_PROOF_CONFIG = {
-  apiUrl: 'http://127.0.0.1:8765/proof',
+  apiUrl: 'https://adjustable-cyber-ipod-appreciated.trycloudflare.com/proof',
   uploadUrl: 'https://script.google.com/macros/s/AKfycbxOpNFGR2X0gQH9ShvZUN7apXgY99aUq5fXt3oQQbNgTg_YhXmBwVSZONDxGN2bWoC2/exec',
   formKey: 'fk-40753d3d93e24b85954b',
   origin: 'https://kwentoperations.github.io',
