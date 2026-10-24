@@ -1,9 +1,8 @@
-/* PLACEHOLDER config for B5b TEST proof form.
- * Local box: python3 -m b4.proof_form --serve  → apiUrl http://127.0.0.1:8765/proof
- * Hosted (later): set apiUrl to the box/webhook URL; formKey = BS_B5B_FORM_KEY (non-secret spam filter).
- * Do not commit real production keys. */
+/* B5b TEST proof form — hosted github.io + box tunnel (t376s1720).
+ * Public apiUrl points at cloudflared quick tunnel → box proof_form --serve :8765.
+ * formKey is non-secret spam filter only. Cap/listener unchanged. */
 window.SBX_PROOF_CONFIG = {
-  apiUrl: 'http://127.0.0.1:8765/proof',
+  apiUrl: 'https://discussing-direction-holders-mesh.trycloudflare.com/proof',
   formKey: 'fk-b5b-test',
   origin: 'https://kwentoperations.github.io',
   clientCode: 'SBX-LITE',
