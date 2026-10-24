@@ -5,6 +5,7 @@ h1{font-size:1.4rem;margin:.2em 0}h2{font-size:1.05rem;margin:0 0 .6em}.tag{font
 section{background:#fff;border-radius:12px;padding:14px;margin:12px 0;box-shadow:0 1px 2px #0001}
 label{display:block;margin:10px 0 2px;font-weight:600}
 input{display:block;width:100%;margin-top:4px;padding:10px;font:inherit;border:1px solid #ccc;border-radius:8px;background:#fff}
+input[type=file]{padding:8px;background:#fafaf8}
 .opt{font-weight:400;color:#777;font-size:.85rem}
 .hint,.note{font-size:.85rem;color:#777;margin:.4em 0 0}
 .err{color:#b3261e;font-size:.9rem;margin:2px 0}.err:empty{display:none}

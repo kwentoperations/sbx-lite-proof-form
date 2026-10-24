@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Proof Upload · SBX-LITE (TEST B5b)</title>
+<title>Proof Upload · SBX-LITE (TEST B5b/O5)</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
   <header>
     <h1>I-upload ang proof</h1>
-    <p class="tag">SBX-LITE · TEST · B5b form fallback</p>
+    <p class="tag">SBX-LITE · TEST · B5b + O5 Drive hop</p>
   </header>
   <p id="status" class="status" role="status"></p>
   <p id="prefill_locked" class="hint locked-note" hidden></p>
@@ -38,18 +38,28 @@
 
     <section>
       <h2>Proof image</h2>
-      <label>HTTPS image URL
-        <input id="image_url" name="image_url" type="url" inputmode="url" autocomplete="off"
-               placeholder="https://…" maxlength="500" required>
-      </label>
-      <p class="err" data-for="image_url"></p>
-      <p class="hint">TEST: paste a public https URL (Telegram sendPhoto needs https). Full Drive file-picker upload (O5) is a later live step.</p>
+      <div id="picker_wrap">
+        <label>File (phone camera / gallery)
+          <input id="proof_file" name="proof_file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/*">
+        </label>
+        <p class="err" data-for="proof_file"></p>
+        <p class="hint" id="picker_hint">O5: file → Apps Script → Drive public https → then binder. Needs config.uploadUrl (live go).</p>
+        <p id="upload_preview" class="hint" hidden></p>
+      </div>
+      <div id="url_wrap">
+        <label>HTTPS image URL <span class="opt" id="url_opt">(fallback / TEST paste)</span>
+          <input id="image_url" name="image_url" type="url" inputmode="url" autocomplete="off"
+                 placeholder="https://…" maxlength="500">
+        </label>
+        <p class="err" data-for="image_url"></p>
+        <p class="hint">Paste a public https URL when Drive upload is not configured. Telegram sendPhoto needs https.</p>
+      </div>
     </section>
 
     <button type="submit" id="submit">Ipadala ang proof</button>
   </form>
 
-  <p class="note">Walang Make · TEST Page only · Cashier auto-link · bank check sa Telegram.</p>
+  <p class="note">Walang Make · TEST Page only · Cashier auto-link · bank check sa Telegram · Drive purge 30d (O5).</p>
 </main>
 <script src="config.js"></script>
 <script src="app.js"></script>
