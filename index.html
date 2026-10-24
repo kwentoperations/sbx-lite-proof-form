@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Proof Upload · SBX-LITE (TEST B5b)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>I-upload ang proof</h1>
+    <p class="tag">SBX-LITE · TEST · B5b form fallback</p>
+  </header>
+  <p id="status" class="status" role="status"></p>
+
+  <form id="proof" novalidate>
+    <section>
+      <h2>Order / Messenger</h2>
+      <label>Subscriber ID
+        <input id="subscriber_id" name="subscriber_id" inputmode="numeric" autocomplete="off"
+               placeholder="ManyChat user id" maxlength="40" required>
+      </label>
+      <p class="err" data-for="subscriber_id"></p>
+      <label>Order ID <span class="opt">(optional)</span>
+        <input id="order_id" name="order_id" autocomplete="off"
+               placeholder="TEST-SBX-LITE-261024-001" maxlength="64">
+      </label>
+      <p class="hint">Blank = auto-link to open unpaid prepaid for this subscriber.</p>
+    </section>
+
+    <section>
+      <h2>Proof image</h2>
+      <label>HTTPS image URL
+        <input id="image_url" name="image_url" type="url" inputmode="url" autocomplete="off"
+               placeholder="https://…" maxlength="500" required>
+      </label>
+      <p class="err" data-for="image_url"></p>
+      <p class="hint">TEST: paste a public https URL (Telegram sendPhoto needs https). Full Drive file-picker upload (O5) is a later live step.</p>
+    </section>
+
+    <button type="submit" id="submit">Ipadala ang proof</button>
+  </form>
+
+  <p class="note">Walang Make · TEST Page only · Cashier auto-link · bank check sa Telegram.</p>
+</main>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
