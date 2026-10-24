@@ -14,7 +14,7 @@
     <p class="tag">SBX-LITE · TEST · B5b form fallback</p>
   </header>
   <p id="status" class="status" role="status"></p>
-  <p id="sid_locked" class="hint locked-note" hidden></p>
+  <p id="prefill_locked" class="hint locked-note" hidden></p>
 
   <form id="proof" novalidate>
     <section>
@@ -25,13 +25,15 @@
                  placeholder="ManyChat user id" maxlength="40" required>
         </label>
         <p class="err" data-for="subscriber_id"></p>
-        <p class="hint">Open via Messenger link (?subscriber_id=…) — field hides when prefilled.</p>
+        <p class="hint">Open via Messenger link (?subscriber_id=&amp;order_id=) — fields hide when prefilled.</p>
       </div>
-      <label>Order ID <span class="opt">(optional)</span>
-        <input id="order_id" name="order_id" autocomplete="off"
-               placeholder="TEST-SBX-LITE-261024-001" maxlength="64">
-      </label>
-      <p class="hint">Blank = auto-link to open unpaid prepaid for this subscriber.</p>
+      <div id="oid_wrap">
+        <label>Order ID <span class="opt">(optional)</span>
+          <input id="order_id" name="order_id" autocomplete="off"
+                 placeholder="TEST-SBX-LITE-261024-001" maxlength="64">
+        </label>
+        <p class="hint">Blank = auto-link to open unpaid prepaid for this subscriber.</p>
+      </div>
     </section>
 
     <section>

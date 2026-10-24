@@ -12,31 +12,57 @@
     var el = document.querySelector('.err[data-for="' + name + '"]');
     if (el) el.textContent = msg || '';
   }
-  /** Read ?subscriber_id= (or ?sid=) from the Messenger customer link. */
-  function sidFromUrl() {
+  /** Read ?subscriber_id= (or ?sid=) and ?order_id= (or ?oid= / ?o=) from Messenger customer link. */
+  function paramsFromUrl() {
     try {
       var p = new URLSearchParams(location.search || '');
-      return (p.get('subscriber_id') || p.get('sid') || '').trim();
-    } catch (e) { return ''; }
+      return {
+        subscriber_id: (p.get('subscriber_id') || p.get('sid') || '').trim(),
+        order_id: (p.get('order_id') || p.get('oid') || p.get('o') || '').trim()
+      };
+    } catch (e) { return { subscriber_id: '', order_id: '' }; }
   }
-  /** Prefill SID from URL; hide+lock the field so customers never type it (Alwin 2026-10-24). */
-  function applySidPrefill() {
-    var sid = sidFromUrl();
-    var inp = document.getElementById('subscriber_id');
-    var wrap = document.getElementById('sid_wrap');
-    var locked = document.getElementById('sid_locked');
-    if (!inp || !sid) return false;
-    inp.value = sid;
-    inp.readOnly = true;
-    inp.setAttribute('aria-readonly', 'true');
-    inp.classList.add('locked');
-    if (wrap) wrap.hidden = true;
-    if (locked) {
-      locked.hidden = false;
-      locked.textContent = 'Messenger account linked.';
+  function sidFromUrl() { return paramsFromUrl().subscriber_id; }
+  function orderIdFromUrl() { return paramsFromUrl().order_id; }
+
+  /** Prefill SID + order_id from URL; hide+lock so customer never types (Alwin t382u / t377s1736). */
+  function applyPrefill() {
+    var q = paramsFromUrl();
+    var any = false;
+    var sidInp = document.getElementById('subscriber_id');
+    var oidInp = document.getElementById('order_id');
+    var sidWrap = document.getElementById('sid_wrap');
+    var oidWrap = document.getElementById('oid_wrap');
+    var locked = document.getElementById('prefill_locked');
+    var bits = [];
+
+    if (sidInp && q.subscriber_id) {
+      sidInp.value = q.subscriber_id;
+      sidInp.readOnly = true;
+      sidInp.setAttribute('aria-readonly', 'true');
+      sidInp.classList.add('locked');
+      if (sidWrap) sidWrap.hidden = true;
+      bits.push('Messenger account');
+      any = true;
     }
-    return true;
+    if (oidInp && q.order_id) {
+      oidInp.value = q.order_id;
+      oidInp.readOnly = true;
+      oidInp.setAttribute('aria-readonly', 'true');
+      oidInp.classList.add('locked');
+      if (oidWrap) oidWrap.hidden = true;
+      bits.push('order');
+      any = true;
+    }
+    if (locked && any) {
+      locked.hidden = false;
+      locked.textContent = 'Linked from Messenger (' + bits.join(' + ') + ').';
+    }
+    return any;
   }
+  // backward-compatible alias used by offline tests
+  function applySidPrefill() { return applyPrefill(); }
+
   function validate() {
     var ok = true;
     var sid = (document.getElementById('subscriber_id').value || '').trim();
@@ -50,7 +76,7 @@
     return ok;
   }
 
-  applySidPrefill();
+  applyPrefill();
 
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
@@ -90,6 +116,11 @@
     }).finally(function () { submitBtn.disabled = false; });
   });
 
-  // Expose for offline node tests (no phone / no network).
-  window.SBX_PROOF_FORM = { sidFromUrl: sidFromUrl, applySidPrefill: applySidPrefill };
+  window.SBX_PROOF_FORM = {
+    paramsFromUrl: paramsFromUrl,
+    sidFromUrl: sidFromUrl,
+    orderIdFromUrl: orderIdFromUrl,
+    applyPrefill: applyPrefill,
+    applySidPrefill: applySidPrefill
+  };
 })();

@@ -65,3 +65,13 @@ After stop, hosted form POSTs will fail until a new tunnel URL is minted and `co
 - Start bot-staff listener without a separate go
 - Enable Make image hop
 - Change TEST Sheet cap / remove `b0/DISABLED`
+
+
+## SID prefill (t377s1736) — 2026-10-24 Asia/Manila
+- Commit `68ff13a`: form reads `?subscriber_id=` / `?sid=`; hides+locks SID when prefilled.
+- Customer URL example: `https://kwentoperations.github.io/sbx-lite-proof-form/?subscriber_id=<SID>`
+- `config.js` apiUrl / tunnel **unchanged**. Cap left as-is. No phone prove this unit.
+## SID+order_id prefill (t382u extends t377s1736) — 2026-10-24 Asia/Manila
+- Form reads `?subscriber_id=` and `?order_id=`; hides+locks both when prefilled.
+- Sample: `https://kwentoperations.github.io/sbx-lite-proof-form/?subscriber_id=<SID>&order_id=<OID>`
+- `config.js` / tunnel unchanged. No phone prove.
