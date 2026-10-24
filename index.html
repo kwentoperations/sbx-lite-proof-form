@@ -14,15 +14,19 @@
     <p class="tag">SBX-LITE · TEST · B5b form fallback</p>
   </header>
   <p id="status" class="status" role="status"></p>
+  <p id="sid_locked" class="hint locked-note" hidden></p>
 
   <form id="proof" novalidate>
     <section>
       <h2>Order / Messenger</h2>
-      <label>Subscriber ID
-        <input id="subscriber_id" name="subscriber_id" inputmode="numeric" autocomplete="off"
-               placeholder="ManyChat user id" maxlength="40" required>
-      </label>
-      <p class="err" data-for="subscriber_id"></p>
+      <div id="sid_wrap">
+        <label>Subscriber ID
+          <input id="subscriber_id" name="subscriber_id" inputmode="numeric" autocomplete="off"
+                 placeholder="ManyChat user id" maxlength="40" required>
+        </label>
+        <p class="err" data-for="subscriber_id"></p>
+        <p class="hint">Open via Messenger link (?subscriber_id=…) — field hides when prefilled.</p>
+      </div>
       <label>Order ID <span class="opt">(optional)</span>
         <input id="order_id" name="order_id" autocomplete="off"
                placeholder="TEST-SBX-LITE-261024-001" maxlength="64">

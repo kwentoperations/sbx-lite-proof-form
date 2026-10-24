@@ -12,3 +12,5 @@ input{display:block;width:100%;margin-top:4px;padding:10px;font:inherit;border:1
 .status.ok{background:#e8f6ec;color:#0a7a32}.status.error{background:#fde8e6;color:#b3261e}
 button[type=submit]{width:100%;padding:14px;font-size:1.05rem;border:0;border-radius:10px;background:#1d6fd8;color:#fff;margin-top:8px}
 button[disabled]{opacity:.6}
+input.locked{background:#f0f0ee;color:#555}
+.locked-note{color:#0a7a32;font-weight:600}

@@ -12,6 +12,31 @@
     var el = document.querySelector('.err[data-for="' + name + '"]');
     if (el) el.textContent = msg || '';
   }
+  /** Read ?subscriber_id= (or ?sid=) from the Messenger customer link. */
+  function sidFromUrl() {
+    try {
+      var p = new URLSearchParams(location.search || '');
+      return (p.get('subscriber_id') || p.get('sid') || '').trim();
+    } catch (e) { return ''; }
+  }
+  /** Prefill SID from URL; hide+lock the field so customers never type it (Alwin 2026-10-24). */
+  function applySidPrefill() {
+    var sid = sidFromUrl();
+    var inp = document.getElementById('subscriber_id');
+    var wrap = document.getElementById('sid_wrap');
+    var locked = document.getElementById('sid_locked');
+    if (!inp || !sid) return false;
+    inp.value = sid;
+    inp.readOnly = true;
+    inp.setAttribute('aria-readonly', 'true');
+    inp.classList.add('locked');
+    if (wrap) wrap.hidden = true;
+    if (locked) {
+      locked.hidden = false;
+      locked.textContent = 'Messenger account linked.';
+    }
+    return true;
+  }
   function validate() {
     var ok = true;
     var sid = (document.getElementById('subscriber_id').value || '').trim();
@@ -24,6 +49,8 @@
     }
     return ok;
   }
+
+  applySidPrefill();
 
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
@@ -62,4 +89,7 @@
       setStatus('Network error: ' + (e && e.message ? e.message : e), 'error');
     }).finally(function () { submitBtn.disabled = false; });
   });
+
+  // Expose for offline node tests (no phone / no network).
+  window.SBX_PROOF_FORM = { sidFromUrl: sidFromUrl, applySidPrefill: applySidPrefill };
 })();
